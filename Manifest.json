@@ -1,0 +1,34 @@
+{
+  "info" : 
+  {
+    "name" : "ScriptListLoader",
+
+    "summary" : "Load multiple JavaScript and CSS files. Callback when done.",
+    "description" : "Load multiple JavaScript and CSS files. Callback when done.",
+    
+    "homepage" : "https://github.com/qooxdoo-contrib/ScriptListLoader",
+
+    "license" : "SomeLicense",
+    "authors" : 
+    [
+      {
+        "name" : "Derrell Lipman (derrell)",
+        "email" : "derrell.lipman@unwireduniverse.com"
+      }
+    ],
+
+    "version" : "trunk",
+    "qooxdoo-versions": ["2.0"]
+  },
+  
+  "provides" : 
+  {
+    "namespace"   : "scriptlistloader",
+    "encoding"    : "utf-8",
+    "class"       : "source/class",
+    "resource"    : "source/resource",
+    "translation" : "source/translation",
+    "type"        : "application"
+  }
+}
+
