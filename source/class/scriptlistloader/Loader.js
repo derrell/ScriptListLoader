@@ -65,7 +65,6 @@
 qx.Class.define("scriptlistloader.Loader",
 {
   extend : qx.core.Object,
-  type   : "abstract",
 
   /**
    * Script Loader.
@@ -76,7 +75,7 @@ qx.Class.define("scriptlistloader.Loader",
    *   fully-resolved names of files which failed to load. If this array is
    *   empty, then all files loaded successfully.
    *
-   * @param resourceDir {String}
+   * @param resourceDir {String?}
    *   The directory in which to find the CSS and JavaScript files to be
    *   loaded. This will typically be something like "resource/packageName"
    *
@@ -104,7 +103,7 @@ qx.Class.define("scriptlistloader.Loader",
         {
           // Prefix this filename with the resource directory, and call our
           // function to load the CSS file.
-          this.__addCss(resourceDir + "/" + cssFile);
+          this.__addCss((resourceDir ? resourceDir + "/" : "") + cssFile);
         },
         this);
     }
@@ -118,10 +117,14 @@ qx.Class.define("scriptlistloader.Loader",
       // Begin loading of the JavaScript files. Prefix each of the JavaScript
       // files with the resource directory.
       this.__loadScripts(onAllScriptsProcessed, 
-                         jsFiles.map(function(jsFile)
-                                     {
-                                       return resourceDir + "/" + jsFile;
-                                     }));
+                         jsFiles.map(
+                           function(jsFile)
+                           {
+                             return ((resourceDir 
+                                      ? resourceDir + "/"
+                                      : "") +
+                                     jsFile);
+                           }));
     }
 
     // Initialize the map of listeners for scripts current being loaded
